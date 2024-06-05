@@ -1,6 +1,7 @@
 package ru.t1.task4.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ public class AccountController {
 			summary = "Новый пользователь",
 			description = "Создание нового пользователя с ролями"
 	)
+	@SecurityRequirement(name = "JWT")
 	@PostMapping("/new")
 	@PreAuthorize("hasAuthority('SCOPE_ADMIN')")
 	public ResponseEntity<AccountDTO> newAccount(@RequestBody Account account) throws ControllerException {
